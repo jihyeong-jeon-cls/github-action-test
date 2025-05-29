@@ -1,0 +1,23 @@
+name: Run Tests Manually
+
+on:
+  workflow_dispatch:  # ✨ 이게 핵심! 버튼 클릭으로 실행 가능
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
